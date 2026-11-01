@@ -1,4 +1,4 @@
-# slime-splits
+# nvim-slime-splits
 
 Open named REPL splits from Neovim and send code to them with [vim-slime](https://github.com/jpalardy/vim-slime). It detects whether you're in [herdr](https://herdr.dev) or tmux, so the same config works in both.
 
@@ -17,7 +17,7 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 {
   "jpalardy/vim-slime",
-  dependencies = { "haraldan/slime-splits" },
+  dependencies = { "haraldan/nvim-slime-splits" },
   init = function()
     vim.g.slime_bracketed_paste = 1
     vim.g.slime_dont_ask_default = 1

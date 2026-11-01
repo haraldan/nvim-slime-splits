@@ -9,7 +9,7 @@ local function backend()
     name = vim.env.HERDR_ENV and "herdr" or vim.env.TMUX and "tmux"
   end
   if not name then
-    vim.notify("slime-splits: not running inside herdr or tmux", vim.log.levels.ERROR)
+    vim.notify("nvim-slime-splits: not running inside herdr or tmux", vim.log.levels.ERROR)
     return nil
   end
   return require("slime_splits." .. name)
@@ -19,7 +19,7 @@ end
 local function state_file(b, name)
   local runtime_dir = vim.env.XDG_RUNTIME_DIR or "/tmp"
   local session = b.session():gsub("/", "_")
-  return ("%s/slime-splits/%s/%s/%s"):format(runtime_dir, b.slime_target, session, name)
+  return ("%s/nvim-slime-splits/%s/%s/%s"):format(runtime_dir, b.slime_target, session, name)
 end
 
 --- Choose the multiplexer and point vim-slime at it.
@@ -76,7 +76,7 @@ function M.open(name, opts)
       cwd = opts.cwd or vim.fn.getcwd(),
     })
     if not pane_id then
-      vim.notify("slime-splits: " .. err, vim.log.levels.ERROR)
+      vim.notify("nvim-slime-splits: " .. err, vim.log.levels.ERROR)
       return nil
     end
 

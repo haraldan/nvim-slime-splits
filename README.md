@@ -75,7 +75,6 @@ vim.g.slime_default_config = { pane_id = "w1:p2" }
 ## Notes
 
 - Multi-line sends use bracketed paste. IPython runs the paste straight away. Python's built-in REPL may wait at a `...` prompt for one more Enter.
-- On herdr, each send is passed as one command-line argument, and Linux limits those to 128 KiB. Larger sends fail.
 
 ## License
 

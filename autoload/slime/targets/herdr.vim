@@ -16,7 +16,16 @@ function! slime#targets#herdr#send(config, text) abort
   if bracketed_paste
     let text_to_paste = "\e[200~" . text_to_paste . "\e[201~"
   endif
-  call s:send_text(a:config["pane_id"], text_to_paste)
+
+  " a single argument can't exceed 128 KiB on Linux, and a character takes up to 4 bytes
+  let chunk_size = 30000
+
+  for i in range(0, strchars(text_to_paste) / chunk_size)
+    let chunk = strcharpart(text_to_paste, i * chunk_size, chunk_size)
+    if len(chunk) > 0
+      call s:send_text(a:config["pane_id"], chunk)
+    endif
+  endfor
 
   " trailing newline
   if has_crlf
